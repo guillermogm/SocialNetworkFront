@@ -16,9 +16,6 @@ export const Header = () => {
                     <CNavigator className="nav-item nav-link active" path="/" content="Login" />
                     <CNavigator className="nav-item nav-link active" path="/" content="Register" />
                 </div>
-                <form class="form-inline my-2 my-lg-0">
-
-                </form>
             </div>
         </nav>
     )

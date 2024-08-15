@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { loginUser } from '../../Services/apiCalls.js'
+import { jwtDecode } from 'jwt-decode'
+import { isTokenValid } from '../../Utils/functions.js'
 
 export const Login = () => {
     const [error, setError] = useState("")
@@ -18,6 +21,28 @@ export const Login = () => {
             }
         ))
     }
+    const login = async () => {
+        try {
+          setError("")
+          const response = await loginUser(credentials)
+          if (response.success) {
+            navigate("/")
+            const decodedToken =jwtDecode(response.token)
+            const fullToken={
+              token:response.token,
+              tokenData:decodedToken
+            }
+            localStorage.setItem("fullToken", JSON.stringify(fullToken))
+            isTokenValid(fullToken.tokenData.exp)
+            window.location.reload();
+          } else {
+            setError("Error login user.")
+          }
+    
+        } catch (error) {
+          setError("Somenthing unexpected happend.")
+        }
+      }
     return (
         <>
             <div class="card mx-auto">
@@ -26,15 +51,19 @@ export const Login = () => {
                     <div className="container">
                         <form>
                             <label className="col-form-label">Email:</label>
-                            <input type="email" name="email" className="form-control" onChange={handleChange} />
+                            <div className='col-sm'>
+                                <input type="email" placeholder='Email' name="email" className="form-control" onChange={handleChange} />
+                            </div>
                             <label className="col-form-label">Password:</label>
-                            <input type="password" name="password" className="form-control" onChange={handleChange} />
+                            <div className='col-sm'>
+                                <input type="password" name="password" placeholder='Password' className="form-control" onChange={handleChange} />
+                            </div>
                             <div className="text-center mt-4">
-                                <input type="button" name="send" className="btn btn-primary" value="Login" />
+                                <input type="button" name="send" className="btn btn-primary" value="Login" onClick={login}/>
                             </div>
                         </form>
                         <div className="text-center">
-                            <h2></h2>
+                            <h3>{error}</h3>
                         </div>
                     </div>
                 </div>
