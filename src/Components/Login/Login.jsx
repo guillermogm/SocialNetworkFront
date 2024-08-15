@@ -33,8 +33,8 @@ export const Login = () => {
               tokenData:decodedToken
             }
             localStorage.setItem("fullToken", JSON.stringify(fullToken))
-            isTokenValid(fullToken.tokenData.exp)
             window.location.reload();
+            isTokenValid(fullToken.tokenData.exp)
           } else {
             setError("Error login user.")
           }
