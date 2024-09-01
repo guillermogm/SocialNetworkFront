@@ -13,8 +13,8 @@ export const Header = () => {
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav ms-auto">
                     <CNavigator className="nav-item nav-link active" path="/" content="Home" />
-                    <CNavigator className="nav-item nav-link active" path="/" content="Login" />
-                    <CNavigator className="nav-item nav-link active" path="/" content="Register" />
+                    <CNavigator className="nav-item nav-link active" path="/login" content="Login" />
+                    <CNavigator className="nav-item nav-link active" path="/register" content="Register" />
                 </div>
             </div>
         </nav>
