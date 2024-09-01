@@ -4,7 +4,7 @@ import { loginUser } from '../../Services/apiCalls.js'
 import { jwtDecode } from 'jwt-decode'
 import { isTokenValid } from '../../Utils/functions.js'
 
-export const Login = () => {
+export const Clogin = () => {
     const [error, setError] = useState("")
     const navigate = useNavigate()
     const [credentials, setCredentials] = useState(

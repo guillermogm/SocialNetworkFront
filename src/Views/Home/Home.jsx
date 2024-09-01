@@ -1,6 +1,6 @@
 import React from 'react'
 import './Home.css'
-import { Login } from '../../Components/Login/Login'
+import { Clogin } from '../../Components/Login/Login'
 
 export const Home = () => {
   return (
@@ -15,7 +15,7 @@ export const Home = () => {
             </div>
           </div>
           <div className='col-sm-5 mt-5'>
-            <Login/>
+            <Clogin/>
           </div>
         </div>
       </div>
