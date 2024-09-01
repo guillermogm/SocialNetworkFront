@@ -8,8 +8,8 @@ export const Home = () => {
       <div className='container'>
         <div className='row'>
         <div className='col-sm mt-5'>
-            <div class="card mx-auto">
-              <div class="card-body">
+            <div className="card mx-auto">
+              <div className="card-body">
                 This is some text within a card body.
               </div>
             </div>

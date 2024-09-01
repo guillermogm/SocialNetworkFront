@@ -45,8 +45,8 @@ export const Login = () => {
       }
     return (
         <>
-            <div class="card mx-auto">
-                <div class="card-body">
+            <div className="card mx-auto">
+                <div className="card-body">
                     <h1 className="text-center mt-2">Login</h1>
                     <div className="container">
                         <form>
