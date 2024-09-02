@@ -37,3 +37,13 @@ export const registerUser = async (credentials) => {
 
     return result;
 }
+
+export const getPosts = async () => {
+    const response = await fetch(`${URL}/api/posts/`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+    })
+    return await response.json()
+}

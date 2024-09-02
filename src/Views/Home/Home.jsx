@@ -10,7 +10,13 @@ export const Home = () => {
         <div className='col-sm mt-5'>
             <div className="card mx-auto">
               <div className="card-body">
-                This is some text within a card body.
+                <h2 className='text-center'>Welcome to Socialize</h2>
+                <p>Socialize is a new social network that will change your
+                  mind on what you think about social networks. <br/>
+                  To access the full expirience of Socialize you can register
+                  in the button of the nav bar or if you are a user login
+                  on the form to the rigth. 
+                </p>
               </div>
             </div>
           </div>
