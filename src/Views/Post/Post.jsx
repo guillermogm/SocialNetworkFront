@@ -31,7 +31,7 @@ export const Post = () => {
                 {
                     posts.map((post, index) => { 
                         return (
-                            <div key={post.id} className={`mt-4 mb-5`}>
+                            <div key={index} className={`mt-4 mb-5`}>
                                 <div className="card">
                                     <div className="card-body">
                                         <h5 className="card-title text-center">{post.title}</h5>
