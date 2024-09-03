@@ -59,7 +59,7 @@ export const Profile = () => {
     return (
         <>
             <div className="container">
-                <div className="card mx-auto mt-5">
+                <div className="card mx-auto mt-5 cardWidth">
                     <div className="card-body">
                         <h1 className="text-center mt-5 mb-5">Profile</h1>
                         <div className="row ms-5">
