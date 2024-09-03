@@ -13,7 +13,7 @@ export const Home = () => {
                 <h2 className='text-center'>Welcome to Socialize</h2>
                 <p>Socialize is a new social network that will change your
                   mind on what you think about social networks. <br/>
-                  To access the full expirience of Socialize you can register
+                  To access the full experience of Socialize you can register
                   in the button of the nav bar or if you are a user login
                   on the form to the rigth. 
                 </p>

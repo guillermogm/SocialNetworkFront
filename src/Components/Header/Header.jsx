@@ -1,8 +1,18 @@
 import React from 'react'
 import { CNavigator } from '../CNavigator/CNavigator.jsx'
 import './Header.css'
+import { useAuth } from '../../context/tokenContext.jsx'
+import { useNavigate } from 'react-router-dom'
 
 export const Header = () => {
+    const navigate = useNavigate();
+    const {fullToken, setFullToken} = useAuth()
+    const Logout = () => {
+        localStorage.removeItem("fullToken");
+        setFullToken(null);
+        navigate("/");
+    };
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <CNavigator className="navbar-brand" path="/" id="Title" content="Socialize" />
@@ -14,10 +24,24 @@ export const Header = () => {
                 <div className="navbar-nav ms-auto">
                     <CNavigator className="nav-item nav-link active" path="/" content="Home" />
                     <CNavigator className="nav-item nav-link active" path="/posts" content="All Posts" />
-                    <CNavigator className="nav-item nav-link active" path="/login" content="Login" />
-                    <CNavigator className="nav-item nav-link active" path="/register" content="Register" />
+                    {
+                        fullToken ? (
+                            <>
+                                <CNavigator className="nav-item nav-link active" path="/profile" content="Profile" />
+                                <input className="nav-item nav-link active" onClick={Logout} value="Logout" readOnly />
+                            </>
+                        ) : (
+                            <>
+                                <CNavigator className="nav-item nav-link active" path="/login" content="Login" />
+                                <CNavigator className="nav-item nav-link active" path="/register" content="Register" />
+                            </>
+
+                        )
+                    }
                 </div>
             </div>
         </nav>
     )
+
+    
 }

@@ -47,3 +47,27 @@ export const getPosts = async () => {
     })
     return await response.json()
 }
+
+export const getProfile = async (token) => {
+    const response = await fetch(`${URL}/api/users/profile`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+    })
+    return await response.json()
+}
+
+
+export const updateProfile = async (changes, token) => {
+    const response = await fetch(`${URL}/api/users/profile`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(changes)
+    })
+    return await response.json()
+}
