@@ -26,8 +26,10 @@ export const Header = () => {
                     <CNavigator className="nav-item nav-link active" path="/posts" content="All Posts" />
                     {
                         fullToken ? (
-                            <input className="nav-item nav-link active" onClick={Logout} value="Logout" />
-
+                            <>
+                                <CNavigator className="nav-item nav-link active" path="/profile" content="Profile" />
+                                <input className="nav-item nav-link active" onClick={Logout} value="Logout" />
+                            </>
                         ) : (
                             <>
                                 <CNavigator className="nav-item nav-link active" path="/login" content="Login" />

@@ -2,28 +2,25 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Profile.css'
 import { useAuth } from '../../context/tokenContext'
+import { getProfile, updateProfile } from '../../Services/apiCalls'
 
 export const Profile = () => {
     const navigate = useNavigate()
-    const [fullToken, setFullToken] = useAuth()
-    let token
+    const {fullToken} = useAuth()
 
     const [profileData, setProfileData] = useState({
-        firstName: "",
-        lastName: "",
+        name: "",
         email: ""
     })
     const [editing, setEditing] = useState(false)
     const [editData, setEditData] = useState({
-        firstName: "",
-        lastName: "",
+        name: "",
         email: ""
     })
 
     function editingButtonHandler() {
         setEditData({
-            firstName: profileData.firstName,
-            lastName: profileData.lastName,
+            name: profileData.name,
             email: profileData.email
         })
         setEditing(!editing)
@@ -42,8 +39,7 @@ export const Profile = () => {
             navigate("/login")
         } else {
             const bringProfile = async () => {
-                token = fullToken.token
-                const response = await getProfile(token)
+                const response = await getProfile(fullToken.token)
                 setProfileData(response.data)
             }
             bringProfile()
@@ -65,14 +61,8 @@ export const Profile = () => {
             <div className="container">
                 <div className="row d-flex justify-content-center text-center">
                     <div className={editing ? "col-2" : "col-8"}>
-                        <h4 className={editing ? "hidden" : "mb-2"}>First Name: {profileData.firstName ? profileData.firstName : "No available"}</h4>
+                        <h4 className={editing ? "hidden" : "mb-2"}>First Name: {profileData.name ? profileData.name : "No available"}</h4>
                         <input type='text' name='firstName' placeholder='First Name' className={editing ? "mb-2 form-control" : "hidden"} onChange={editInputHandler} />
-                    </div>
-                </div>
-                <div className="row d-flex justify-content-center text-center">
-                    <div className={editing ? "col-2" : "col-8"}>
-                        <h4 className={editing ? "hidden" : "mb-2"}>Surname: {profileData.lastName ? profileData.lastName : "No available"}</h4>
-                        <input type='text' name='lastName' placeholder='Surname' className={editing ? "mb-2 form-control" : "hidden"} onChange={editInputHandler} />
                     </div>
                 </div>
                 <div className="row d-flex justify-content-center text-center">
