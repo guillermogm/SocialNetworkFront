@@ -12,7 +12,7 @@ export const Header = () => {
         setFullToken(null);
         navigate("/");
     };
-    console.log(fullToken);
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <CNavigator className="navbar-brand" path="/" id="Title" content="Socialize" />
@@ -28,7 +28,7 @@ export const Header = () => {
                         fullToken ? (
                             <>
                                 <CNavigator className="nav-item nav-link active" path="/profile" content="Profile" />
-                                <input className="nav-item nav-link active" onClick={Logout} value="Logout" />
+                                <input className="nav-item nav-link active" onClick={Logout} value="Logout" readOnly />
                             </>
                         ) : (
                             <>

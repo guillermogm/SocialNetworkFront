@@ -6,7 +6,7 @@ import { getProfile, updateProfile } from '../../Services/apiCalls'
 
 export const Profile = () => {
     const navigate = useNavigate()
-    const {fullToken} = useAuth()
+    const { fullToken } = useAuth()
 
     const [profileData, setProfileData] = useState({
         name: "",
@@ -47,35 +47,40 @@ export const Profile = () => {
 
     }, [])
 
-    const confirmButtonHandler = async()=>{
-        const response =await updateProfile(editData,fullToken.token)
-        if(response.success){
-           const newData= await getProfile(fullToken.token)
-           setProfileData(newData.data)
-           setEditing(!editing)
+    const confirmButtonHandler = async () => {
+        const response = await updateProfile(editData, fullToken.token)
+        if (response.success) {
+            const newData = await getProfile(fullToken.token)
+            setProfileData(newData.data)
+            setEditing(!editing)
         }
     }
+    console.log(editData)
     return (
         <>
-            <h1 className="text-center mt-5 mb-5">Profile</h1>
             <div className="container">
-                <div className="row d-flex justify-content-center text-center">
-                    <div className={editing ? "col-2" : "col-8"}>
-                        <h4 className={editing ? "hidden" : "mb-2"}>First Name: {profileData.name ? profileData.name : "No available"}</h4>
-                        <input type='text' name='firstName' placeholder='First Name' className={editing ? "mb-2 form-control" : "hidden"} onChange={editInputHandler} />
+                <div className="card mx-auto mt-5">
+                    <div className="card-body">
+                        <h1 className="text-center mt-5 mb-5">Profile</h1>
+                        <div className="row ms-5">
+                            <div className={editing ? "col-5 editMargin" : "col-8"}>
+                                <h4 className={editing ? "hidden" : "mb-2"}>Name: {profileData.name ? profileData.name : "No available"}</h4>
+                                <input type='text' name='name' placeholder='Name' className={editing ? "mb-2 form-control" : "hidden"} onChange={editInputHandler} />
+                            </div>
+                        </div>
+                        <div className="row ms-5">
+                            <div className={editing ? "col-5 editMargin" : "col-8"}>
+                                <h4 className={editing ? "hidden" : "mb-2"}>Email: {profileData.email ? profileData.email : "No available"}</h4>
+                                <input type='text' name='email' placeholder='Email' className={editing ? "mb-2 form-control" : "hidden"} onChange={editInputHandler} />
+                            </div>
+                        </div>
+                        <div className="text-center mt-4">
+                            <input type="button" name="Edit" className="btn btn-primary" value={editing ? "Cancel" : "Edit"} onClick={editingButtonHandler} />
+                        </div>
+                        <div className="text-center mt-2">
+                            <input type="button" name="Save" value="Save Changes" className={editing ? "btn btn-primary" : "hidden"} onClick={confirmButtonHandler} />
+                        </div>
                     </div>
-                </div>
-                <div className="row d-flex justify-content-center text-center">
-                    <div className={editing ? "col-2" : "col-8"}>
-                        <h4 className={editing ? "hidden" : "mb-2"}>Email: {profileData.email ? profileData.email : "No available"}</h4>
-                        <input type='text' name='email' placeholder='email' className={editing ? "mb-2 form-control" : "hidden"} onChange={editInputHandler} />
-                    </div>
-                </div>
-                <div className="text-center mt-4">
-                    <input type="button" name="Edit" className="btn btn-primary" value={editing ? "Cancel" : "Edit"} onClick={editingButtonHandler} />
-                </div>
-                <div className="text-center mt-2">
-                    <input type="button" name="Save" value="Save Changes"  className={editing ? "btn btn-primary" : "hidden"} onClick={confirmButtonHandler} />
                 </div>
             </div>
         </>

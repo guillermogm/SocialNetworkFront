@@ -1,3 +1,11 @@
 .hidden{
     display: none;
 }
+
+.card{
+    width: 34em;
+}
+
+.editMargin{
+    margin-left:6.5em;
+}
