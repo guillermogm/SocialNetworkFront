@@ -92,3 +92,16 @@ export const likePost = async (postId, token) => {
     })
     return await response.json()
 }
+
+export const createPost = async (post, token) => {
+    const response = await fetch(`${URL}/api/posts/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(post)
+    })
+    return await response.json()
+}
+

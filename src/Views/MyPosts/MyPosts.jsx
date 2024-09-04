@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getOwnPosts, likePost } from "../../Services/apiCalls";
+import { createPost, getOwnPosts, likePost } from "../../Services/apiCalls";
 import { useAuth } from "../../context/tokenContext";
 
 export const MyPosts = () => {
@@ -7,6 +7,10 @@ export const MyPosts = () => {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState("");
   const [like, setLike] = useState(false);
+  const [newPost, setNewPost] = useState({
+    title: "",
+    content: "",
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +23,7 @@ export const MyPosts = () => {
           }
           setPosts(response.data);
         } else {
-          setError("Error loading Services.");
+          setError("Error loading Posts.");
         }
       } catch (error) {
         setError("Something unexpected happened.");
@@ -40,10 +44,56 @@ export const MyPosts = () => {
       setError("Something unexpected happened liking this post.");
     }
   };
+  function editInputHandler(e) {
+    setNewPost({
+      ...newPost,
+      [e.target.name]: e.target.value,
+    });
+  }
+  const confirmButtonHandler = async () => {
+    const response = await createPost(newPost, fullToken.token);
+    if (response.success) {
+      setNewPost({
+        title: "",
+        content: "",
+      });
+      setLike(!like);
+    }else{
+      setError("Error creating this post.");
+    }
+  };
   return (
     <>
       <div className="container">
         <h1 className="text-center mt-5">MY POSTS</h1>
+        <div className="card">
+          <div className="card-body">
+            <input
+              type="text"
+              name="title"
+              placeholder="Title"
+              className="mb-2 form-control"
+              value={newPost.title}
+              onChange={editInputHandler}
+            />
+            <input
+              type="text"
+              name="content"
+              placeholder="Content"
+              className="mb-2 form-control"
+              value={newPost.content}
+              onChange={editInputHandler}
+            />
+            <div className="d-flex justify-content-center">
+              <button
+                className="btn btn-primary"
+                onClick={() => confirmButtonHandler()}
+              >
+                Create Post
+              </button>
+            </div>
+          </div>
+        </div>
         {posts.map((post, index) => {
           return (
             <div key={index} className={`mt-4 mb-5`}>

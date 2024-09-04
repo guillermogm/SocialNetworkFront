@@ -27,7 +27,6 @@ export const Profile = () => {
     }
 
     function editInputHandler(e) {
-
         setEditData({
             ...editData,
             [e.target.name]: e.target.value,

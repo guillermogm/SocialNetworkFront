@@ -7,7 +7,7 @@ export const Post = () => {
     const [error, setError] = useState("")
     const [like, setLike] = useState(false)
     const { fullToken } = useAuth()
-    
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -19,7 +19,7 @@ export const Post = () => {
                     }
                     setPosts(response.data);
                 } else {
-                    setError('Error loading Services.');
+                    setError('Error loading Posts.');
                 }
             } catch (error) {
                 setError('Something unexpected happened.');
