@@ -7,6 +7,7 @@ export const Post = () => {
     const [error, setError] = useState("")
     const [like, setLike] = useState(false)
     const { fullToken } = useAuth()
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
