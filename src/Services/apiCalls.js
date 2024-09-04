@@ -71,3 +71,14 @@ export const updateProfile = async (changes, token) => {
     })
     return await response.json()
 }
+
+export const getOwnPosts = async (token) => {
+    const response = await fetch(`${URL}/api/posts/own`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+    })
+    return await response.json()
+}
