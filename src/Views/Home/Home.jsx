@@ -11,11 +11,10 @@ export const Home = () => {
             <div className="card mx-auto">
               <div className="card-body">
                 <h2 className='text-center'>Welcome to Socialize</h2>
-                <p>Socialize is a new social network that will change your
-                  mind on what you think about social networks. <br/>
-                  To access the full experience of Socialize you can register
-                  in the button of the nav bar or if you are a user login
-                  on the form to the rigth. 
+                <p>
+                  Connect with friends, family, and like-minded individuals from around the world. Share your thoughts, experiences, and passions with our vibrant community. 
+                  <br></br>Discover new interests, join meaningful conversations, and make lasting connections.<br></br>
+                  We're excited to have you on board! Take a look around, customize your profile, and start socializing today! 
                 </p>
               </div>
             </div>

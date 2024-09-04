@@ -71,3 +71,37 @@ export const updateProfile = async (changes, token) => {
     })
     return await response.json()
 }
+
+export const getOwnPosts = async (token) => {
+    const response = await fetch(`${URL}/api/posts/own`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+    })
+    return await response.json()
+}
+export const likePost = async (postId, token) => {
+    const response = await fetch(`${URL}/api/posts/like/${postId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+    })
+    return await response.json()
+}
+
+export const createPost = async (post, token) => {
+    const response = await fetch(`${URL}/api/posts/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(post)
+    })
+    return await response.json()
+}
+
