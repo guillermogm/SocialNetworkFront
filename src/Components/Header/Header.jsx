@@ -40,7 +40,7 @@ export const Header = () => {
                         )
                     }
                     {
-                       fullToken && fullToken.tokenData && fullToken.tokenData.role === "admin"?(
+                       fullToken && fullToken.tokenData && fullToken.tokenData.role === "super_admin"?(
                             <CNavigator className="nav-item nav-link active" path="/admin" content="Admin" />
                         ) : (
                             <></>
