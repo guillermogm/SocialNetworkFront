@@ -54,7 +54,6 @@ export const Profile = () => {
             setEditing(!editing)
         }
     }
-    console.log(editData)
     return (
         <>
             <div className="container">
