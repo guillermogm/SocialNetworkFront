@@ -30,6 +30,9 @@ export const Post = () => {
 
    const likeHandler = async (postId) =>{
             try {
+                if(!fullToken){
+                    return;
+                }
                 const response = await likePost(postId, fullToken.token)
                 if(response.success){
                     setLike(!like)
@@ -52,7 +55,7 @@ export const Post = () => {
                                     <div className="card-body">
                                         <h5 className="card-title text-center">{post.title}</h5>
                                         <p className="card-text">{post.content}</p>
-                                        <button className="btn btn-primary" onClick={() => likeHandler(post._id)}>{post.likes.length} <span>Likes</span></button>
+                                        <button className={!fullToken ? "btn btn-primary disabled" : "btn btn-primary"} onClick={ () => likeHandler(post._id)}>{post.likes.length} <span>Likes</span></button>
                                     </div>
                                 </div>
                             </div>
