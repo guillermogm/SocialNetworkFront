@@ -125,3 +125,15 @@ export const deleteUserById = async (id, token) => {
     })
     return await response.json()
 }
+
+export const deletePostById = async (id, token) => {
+    const response = await fetch(`${URL}/api/posts/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+    })
+    return await response.json()
+}
+

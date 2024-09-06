@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { createPost, getOwnPosts, likePost } from "../../Services/apiCalls";
+import { createPost, deletePostById, getOwnPosts, likePost } from "../../Services/apiCalls";
 import { useAuth } from "../../context/tokenContext";
 
 export const MyPosts = () => {
@@ -62,6 +62,14 @@ export const MyPosts = () => {
       setError("Error creating this post.");
     }
   };
+  const deleteHandler = async (postId) => {
+    const response = await deletePostById(postId, fullToken.token);
+    if (response.success) {
+      setLike(!like);
+    } else {
+      setError("Error deleting this post.");
+    }
+  };
   return (
     <>
       <div className="container">
@@ -106,6 +114,12 @@ export const MyPosts = () => {
                     onClick={() => likeHandler(post._id)}
                   >
                     {post.likes.length} <span>Likes</span>
+                  </button>
+                  <button
+                    className="btn btn-danger float-end"
+                    onClick={() => deleteHandler(post._id)}
+                  >
+                    Delete
                   </button>
                 </div>
               </div>
